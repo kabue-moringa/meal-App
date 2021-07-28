@@ -27,7 +27,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/locationEditText"
+        android:id="@+id/mealEditText"
         android:background="@color/purple_500"
         android:layout_above="@+id/findMealsButton"
         android:layout_marginBottom="10dp"
@@ -35,13 +35,37 @@
         android:hint="Enter Zip Code"
         android:layout_centerHorizontal="true" />
 
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="FindMeals"-->
+<!--        android:id="@+id/findMealsButton"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:background="@color/teal_700"-->
+<!--        android:textColor="@color/white" />-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FindMeals"
+        android:text="Find Meals"
         android:id="@+id/findMealsButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:background="@color/purple_500"
+        android:textColor="@color/teal_700"
+        android:visibility="visible"
+        android:layout_above="@+id/savedMealsButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Saved Meals"
+        android:id="@+id/savedMealsButton"
         android:background="@color/teal_700"
-        android:textColor="@color/white" />
+        android:textColor="@color/teal_700"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>

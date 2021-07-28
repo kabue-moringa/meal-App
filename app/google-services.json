@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "131668219205",
+    "project_id": "meal-app-35ae5",
+    "storage_bucket": "meal-app-35ae5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131668219205:android:7f57e8867c0419dcd21a2c",
+        "android_client_info": {
+          "package_name": "com.moringaschool.mealapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131668219205-hj2uj9e741ne4nupa6l5eddplfd3vndl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moringaschool.mealapp",
+            "certificate_hash": "95b53e908f6daf793ca244dc3a4b3cd687e44fb0"
+          }
+        },
+        {
+          "client_id": "131668219205-q56ip1lbrbv9dtd8utkmdbkb19o764p3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJumBqDgX_Pj91zhaVDKQhtkfCciuXPnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131668219205-q56ip1lbrbv9dtd8utkmdbkb19o764p3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

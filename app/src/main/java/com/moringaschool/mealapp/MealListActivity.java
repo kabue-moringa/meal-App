@@ -1,9 +1,16 @@
 package com.moringaschool.mealapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +28,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MealActivity extends AppCompatActivity {
+public class MealListActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
+    private SharedPreferences.Editor mEditor;
 //    private static final String TAG = MealActivity.class.getSimpleName();
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
@@ -30,20 +40,27 @@ public class MealActivity extends AppCompatActivity {
     private MealListAdapter mAdapter;
 public String meal;
 
-//    private String[] meals = new String[] {"Chicken", "Beef", "Pizza","Burger","scellaneous", "Pasta", "Pork", "Seafood",
-//            "Side", "Starter", "Vegan", "Vegetarian", "Breakfast", "Goat"};
+   private String[] meals = new String[] {"Chicken", "Beef", "Pizza","Burger","scellaneous", "Pasta", "Pork", "Seafood",
+          "Side", "Starter", "Vegan", "Vegetarian", "Breakfast", "Goat"};
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_meal);
     ButterKnife.bind(this);
     Intent intent = getIntent();
-    String location = intent.getStringExtra("location");
-
+//    String location = intent.getStringExtra("location");
+    mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//    Log.d("Shared Pref Location", mRecentAddress);
+    String location = mRecentAddress;
     MealApi client = MealClient.getClient();
+
+
+
 
     Call call = client.getMeal();
    call.enqueue(new Callback<Meal>() {
+
        @Override
        public void onResponse(Call<Meal> call, Response<Meal> response) {
 
@@ -51,10 +68,10 @@ protected void onCreate(Bundle savedInstanceState) {
 
            if (response.isSuccessful()) {
                meal = response.body().getIdMeal();
-               mAdapter = new MealListAdapter(MealActivity.this, meal);
+               mAdapter = new MealListAdapter(MealListActivity.this, meal);
                mRecyclerView.setAdapter(mAdapter);
                RecyclerView.LayoutManager layoutManager =
-                       new LinearLayoutManager(MealActivity.this);
+                       new LinearLayoutManager(MealListActivity.this);
                mRecyclerView.setLayoutManager(layoutManager);
                mRecyclerView.setHasFixedSize(true);
 
@@ -90,5 +107,26 @@ protected void onCreate(Bundle savedInstanceState) {
         mErrorTextView.setText("Something went wrong. Please try again later");
         mErrorTextView.setVisibility(View.VISIBLE);
     }
+    private void addToSharedPreferences(String meal){
+        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, meal).apply();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        ButterKnife.bind(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+}
