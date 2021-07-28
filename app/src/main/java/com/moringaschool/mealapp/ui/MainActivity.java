@@ -1,16 +1,13 @@
-package com.moringaschool.mealapp;
+package com.moringaschool.mealapp.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +15,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.moringaschool.mealapp.Constants;
+import com.moringaschool.mealapp.MealListActivity;
+import com.moringaschool.mealapp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +34,7 @@ private DatabaseReference mSearchedMealReference;
 
 //    binding with butterknife
 @BindView(R.id.findMealsButton) Button mFindMealsButton;
-    @BindView(R.id.mealEditText) EditText mMealEditText;
+//    @BindView(R.id.mealEditText) EditText mMealEditText;
     @BindView(R.id.appNameTextView)TextView mAppNameTextView;
 
 
@@ -74,16 +74,16 @@ private DatabaseReference mSearchedMealReference;
     @Override
     public void onClick(View v){
         if (v == mFindMealsButton) {
-            String meal = mMealEditText.getText().toString();
+//            String meal = mMealEditText.getText().toString();
 
-            saveMealToFirebase(meal);
+//            saveMealToFirebase(meal);
 
 //            if(!(location).equals("")) {
 //                addToSharedPreferences(location);
 //            }
 
             Intent intent = new Intent(MainActivity.this, MealListActivity.class);
-            intent.putExtra("meal", meal);
+//            intent.putExtra("meal", meal);
             startActivity(intent);
         }
     }

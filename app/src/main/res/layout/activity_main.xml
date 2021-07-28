@@ -24,16 +24,16 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textStyle="bold" />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mealEditText"
-        android:background="@color/purple_500"
-        android:layout_above="@+id/findMealsButton"
-        android:layout_marginBottom="10dp"
-        android:padding="5dp"
-        android:hint="Enter Zip Code"
-        android:layout_centerHorizontal="true" />
+<!--    <EditText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/mealEditText"-->
+<!--        android:background="@color/purple_500"-->
+<!--        android:layout_above="@+id/findMealsButton"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:padding="5dp"-->
+<!--        android:hint="Enter Zip Code"-->
+<!--        android:layout_centerHorizontal="true" />-->
 
 <!--    <Button-->
 <!--        android:layout_width="match_parent"-->
