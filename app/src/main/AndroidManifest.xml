@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MealApp">
-        <activity android:name=".ui.CreateAccountActivity"></activity>
-        <activity android:name=".ui.SavedMealList"></activity>
+        <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".ui.CreateAccountActivity" />
+        <activity android:name=".ui.SavedMealList" />
         <activity android:name=".ui.MealDetailActivity" />
         <activity android:name=".MealListActivity">
             <meta-data
