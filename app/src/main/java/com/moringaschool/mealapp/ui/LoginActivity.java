@@ -21,7 +21,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.mealapp.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.ButterKnife
+
+
+
+
+        ;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = LoginActivity.class.getSimpleName();
