@@ -55,9 +55,6 @@ protected void onCreate(Bundle savedInstanceState) {
     String location = mRecentAddress;
     MealApi client = MealClient.getClient();
 
-
-
-
     Call call = client.getMeal();
    call.enqueue(new Callback<Meal>() {
 
