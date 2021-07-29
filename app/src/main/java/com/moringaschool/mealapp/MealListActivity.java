@@ -53,6 +53,7 @@ protected void onCreate(Bundle savedInstanceState) {
     mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
 //    Log.d("Shared Pref Location", mRecentAddress);
     String location = mRecentAddress;
+
     MealApi client = MealClient.getClient();
 
     Call call = client.getMeal();
