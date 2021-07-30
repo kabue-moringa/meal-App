@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <ImageView
+        android:id="@+id/mealImageView"
         android:layout_width="130dp"
         android:layout_height="100dp"
-        android:id="@+id/mealImageView"
-        android:src="@drawable/waffles"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/waffles" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="#ffffff"
-        android:layout_height="match_parent"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_toRightOf="@+id/mealImageView"
+        android:layout_toEndOf="@id/mealImageView">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mealNameTextView"
+            android:id="@+id/mealTextView"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="Meals Name"
-            android:textColor="@color/teal_700"/>
-
+            android:textStyle="italic"
+            android:text="meal"
+            android:textColor="@color/purple_700"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tease your appetite with our amazing kitchen dishes that will make you go wooooow"
-            android:id="@+id/categoryTextView"
-            android:textStyle="italic"/>
-
+            android:text="category"
+            android:textStyle="italic"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:id="@+id/strCategoryTextView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/strAreaTextView"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:text="Area"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/strInstructionsTextView"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:text="instruction"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tags"
+            android:id="@+id/strTagsTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/black"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rating"
-                android:id="@+id/ratingTextView"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/teal_700"/>
         </RelativeLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

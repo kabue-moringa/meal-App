@@ -19,8 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.mealapp.adapters.MealListAdapter;
 import com.moringaschool.mealapp.models.Meal;
-import com.moringaschool.mealapp.network.MealApi;
 import com.moringaschool.mealapp.network.MealClient;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,11 +38,11 @@ public class MealListActivity extends AppCompatActivity {
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
     @BindView(R.id.recyclerView)RecyclerView mRecyclerView;
 
-    private MealListAdapter mAdapter;
-public String meal;
+     private MealListAdapter mAdapter;
+     private List<Meal> meal;
 
-   private String[] meals = new String[] {"Chicken", "Beef", "Pizza","Burger","scellaneous", "Pasta", "Pork", "Seafood",
-          "Side", "Starter", "Vegan", "Vegetarian", "Breakfast", "Goat"};
+//   private String[] meals = new String[] {"Chicken", "Beef", "Pizza","Burger","scellaneous", "Pasta", "Pork", "Seafood",
+//          "Side", "Starter", "Vegan", "Vegetarian", "Breakfast", "Goat"};
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -53,43 +54,40 @@ protected void onCreate(Bundle savedInstanceState) {
     mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
 //    Log.d("Shared Pref Location", mRecentAddress);
     String location = mRecentAddress;
+    fetchPosts();
+}
+    public void fetchPosts(){
+        Log.e("TAG","fetchPosts");
+        String Meal = "Arrabiata";
+        MealClient.getClient().getMealList(meal).enqueue(new Callback<List<Meal>>() {
 
-    MealApi client = MealClient.getClient();
+            @Override
+            public void onResponse(Call<List<Meal>> call, Response<List<Meal>> response) {
+               hideProgressBar();
+                if (response.isSuccessful()) {
+                    meal = response.body();
+                    mAdapter = new MealListAdapter(MealListActivity.this, meal);
+                    mRecyclerView.setAdapter(mAdapter);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MealListActivity.this);
+                    mRecyclerView.setLayoutManager(layoutManager);
+                    mRecyclerView.setHasFixedSize(true);
+                    showMeal();
+                } else {
+                    showUnsuccessfulMessage();
+                }
+            }
 
-    Call call = client.getMeal();
-   call.enqueue(new Callback<Meal>() {
+            private void showMeal() {
+                mRecyclerView.setVisibility(View.VISIBLE);
+            }
 
-       @Override
-       public void onResponse(Call<Meal> call, Response<Meal> response) {
-
-           hideProgressBar();
-
-           if (response.isSuccessful()) {
-               meal = response.body().getIdMeal();
-               mAdapter = new MealListAdapter(MealListActivity.this, meal);
-               mRecyclerView.setAdapter(mAdapter);
-               RecyclerView.LayoutManager layoutManager =
-                       new LinearLayoutManager(MealListActivity.this);
-               mRecyclerView.setLayoutManager(layoutManager);
-               mRecyclerView.setHasFixedSize(true);
-
-               showMeals();
-           } else {
-               showUnsuccessfulMessage();
-           }
-       }
-
-       @Override
-       public void onFailure(Call<Meal> call, Throwable t) {
-           hideProgressBar();
-           showFailureMessage();
-       }
-
-       private void showMeals() {
-           mRecyclerView.setVisibility(View.VISIBLE);
-       }
-       });
-
+            @Override
+            public void onFailure(Call<List<Meal>> call, Throwable t) {
+                Log.e("TAG", "onFailure", t);
+                hideProgressBar();
+                showFailureMessage();
+            }
+        });
     }
 
     private void hideProgressBar() {
@@ -128,3 +126,5 @@ protected void onCreate(Bundle savedInstanceState) {
         return super.onOptionsItemSelected(item);
     }
 }
+
+

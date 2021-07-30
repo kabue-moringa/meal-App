@@ -34,13 +34,9 @@ public class FirebasemealViewHolder extends RecyclerView.ViewHolder implements V
     public void bindMeal(Meal meal){
         ImageView mealImageView = (ImageView) mView.findViewById(R.id.mealImageView);
         TextView nameTextView = (TextView) mView.findViewById(R.id.mealNameTextView);
-        TextView categoryTextView = (TextView) mView.findViewById(R.id.categoryTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
-        nameTextView.setText(meal.getIdMeal());
-        categoryTextView.setText(meal.getStrCategory());
-        ratingTextView.setText("Rating: " + meal.getStrIngredient1() + "/5");
-    }
 
+    }
     @Override
     public void onClick(View v) {
         final ArrayList<Meal> meals = new ArrayList<>();
@@ -59,7 +55,6 @@ public class FirebasemealViewHolder extends RecyclerView.ViewHolder implements V
                 intent.putExtra("position", itemPosition + "");
                 mContext.startActivity(intent);
             }
-
             @Override
             public void onCancelled(@NonNull  DatabaseError error) {
 

@@ -9,13 +9,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface MealApi{
-//    @GET("search.php")
-//    Call<MealSearchResponse> searchMeal(
-//            @Query("s") String query
-//    );
-    @GET("lookup.php")
-    Call<List<Meal>>getMeal(
-
+    @GET("search.php")
+    Call<List<Meal>>getMealList(
+            @Query("s") List<Meal> meal
     );
 
 

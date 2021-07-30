@@ -77,9 +77,9 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Sign up"
-            android:background="@color/purple_500"
+            android:background="@color/teal_700"
             android:layout_marginTop="15dp"
-            android:textColor="@color/purple_500" />
+            android:textColor="@color/teal_700" />
 
         <TextView
             android:layout_width="wrap_content"
