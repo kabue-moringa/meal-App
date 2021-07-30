@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.mealapp.R;
 import com.moringaschool.mealapp.models.Meal;
+import com.moringaschool.mealapp.models.MealsResponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -28,7 +29,8 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MealVi
 
     public MealListAdapter(Context context, List<Meal> meals) {
         mContext = context;
-        mMeals = meals;
+       mMeals = meals;
+//        mMealsResponse =MealsResponse
     }
 
     @NonNull

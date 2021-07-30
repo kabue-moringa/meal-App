@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.mealapp.adapters.MealListAdapter;
 import com.moringaschool.mealapp.models.Meal;
+import com.moringaschool.mealapp.models.MealsResponse;
 import com.moringaschool.mealapp.network.MealClient;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class MealListActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView)RecyclerView mRecyclerView;
 
      private MealListAdapter mAdapter;
-     private List<Meal> meal;
+    private List<Meal> meals;
 
 //   private String[] meals = new String[] {"Chicken", "Beef", "Pizza","Burger","scellaneous", "Pasta", "Pork", "Seafood",
 //          "Side", "Starter", "Vegan", "Vegetarian", "Breakfast", "Goat"};
@@ -57,16 +58,20 @@ protected void onCreate(Bundle savedInstanceState) {
     fetchPosts();
 }
     public void fetchPosts(){
-        Log.e("TAG","fetchPosts");
-        String Meal = "Arrabiata";
-        MealClient.getClient().getMealList(meal).enqueue(new Callback<List<Meal>>() {
+//        Log.e("TAG","fetchPosts");
+//        String Meal = "Arrabiata";
+        String queryTerm = "Arrabiata";
+//        Log.e("TAG", "request " + MealClient.getRetrofitClient().getMealList("Arrabiata").toString());
+        MealClient.getRetrofitClient().getMealList(queryTerm).enqueue(new Callback<MealsResponse>() {
 
             @Override
-            public void onResponse(Call<List<Meal>> call, Response<List<Meal>> response) {
+            public void onResponse(Call<MealsResponse> call, Response <MealsResponse> response) {
+                Log.e("TAG", "onresponse" + response.body());
                hideProgressBar();
                 if (response.isSuccessful()) {
-                    meal = response.body();
-                    mAdapter = new MealListAdapter(MealListActivity.this, meal);
+                    meals = response.body().getMeals();
+                    Log.e("TAG", "response meal " + response.body().getMeals());
+                    mAdapter = new MealListAdapter(MealListActivity.this, meals);
                     mRecyclerView.setAdapter(mAdapter);
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MealListActivity.this);
                     mRecyclerView.setLayoutManager(layoutManager);
@@ -76,14 +81,13 @@ protected void onCreate(Bundle savedInstanceState) {
                     showUnsuccessfulMessage();
                 }
             }
-
             private void showMeal() {
                 mRecyclerView.setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void onFailure(Call<List<Meal>> call, Throwable t) {
-                Log.e("TAG", "onFailure", t);
+            public void onFailure(Call<MealsResponse> call, Throwable t) {
+                Log.e("TAG", "onFailure" + t.getMessage());
                 hideProgressBar();
                 showFailureMessage();
             }
